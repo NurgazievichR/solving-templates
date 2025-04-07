@@ -41,9 +41,12 @@ void union_dsu(int a, int b) {
     int a_parent = find_dsu(a);
     int b_parent = find_dsu(b);
 
+    if (a_parent == b_parent) return;
+
     if (size_dsu[a_parent] < size_dsu[b_parent]) {
         swap(a_parent, b_parent);
     }
     parent[b_parent] = a_parent;
     size_dsu[a_parent] += size_dsu[b_parent];
+    size_dsu[b_parent] = 0; //optional
 }
